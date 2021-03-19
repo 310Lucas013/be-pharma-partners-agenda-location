@@ -34,4 +34,13 @@ public class Location {
         this.city = city;
         this.country = country;
     }
+
+    public Location(LocationDto dto) {
+        this.id = dto.getId();
+        this.street = dto.getStreet();
+        this.houseNumber = dto.getHouseNumber();
+        this.zipCode = dto.getZipCode();
+        this.city = dto.getCity();
+        this.country = dto.getCountry();
+    }
 }
