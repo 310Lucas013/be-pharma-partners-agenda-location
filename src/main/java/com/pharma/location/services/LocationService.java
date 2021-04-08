@@ -16,9 +16,8 @@ public class LocationService {
         this.locationRepository = locationRepository;
     }
 
-    public Location save(LocationDto location){
-        Location loc = new Location(location);
-        return locationRepository.save(loc);
+    public Location save(Location location){
+        return locationRepository.save(location);
     }
 
     public Optional<Location> getById(Long locationId){

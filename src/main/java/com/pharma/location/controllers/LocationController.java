@@ -1,7 +1,9 @@
 package com.pharma.location.controllers;
 
+import com.pharma.location.models.Location;
 import com.pharma.location.models.LocationDto;
 import com.pharma.location.services.LocationService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +22,14 @@ public class LocationController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> saveLocation(@RequestBody LocationDto location) {
-        return ResponseEntity.ok(locationService.save(location));
+        Location loc;
+        try{
+            loc = new Location(location);
+            return ResponseEntity.ok(locationService.save(loc));
+        } catch (NullPointerException exception){
+            System.out.println(exception);
+            return new ResponseEntity<>("Failed to create location", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(method = RequestMethod.GET)
