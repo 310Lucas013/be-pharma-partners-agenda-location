@@ -37,11 +37,11 @@ public class EventReceiver {
         String json = new String(message.getBody());
         CreateAppointmentEvent event = gson.fromJson(json, CreateAppointmentEvent.class);
         Location location = new Location();
-        location.setId(event.getId());
-        location.setCity(event.getLocation());
-        location.setCountry(event.getLocation());
-        location.setHouseNumber(event.getLocation());
-        location.setStreet(event.getLocation());
+        location.setCity(event.getCity());
+        location.setCountry(event.getCountry());
+        location.setHouseNumber(event.getStreetNumber());
+        location.setStreet(event.getStreet());
+        location.setZipCode(event.getPostalCode());
         locationService.save(location);
     }
 }
