@@ -18,6 +18,10 @@ public class EventReceiver {
 
     LocationService locationService;
 
+    public EventReceiver(LocationService locationService) {
+        this.locationService = locationService;
+    }
+
     private Logger log = LoggerFactory.getLogger(EventReceiver.class);
 
     @Bean
