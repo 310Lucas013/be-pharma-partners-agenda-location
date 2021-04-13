@@ -1,80 +1,60 @@
 package com.pharma.location.events;
 
 public class CreateAppointmentEvent {
-    private Long id;
-    private Long employeeId;
-    private String patientName;
-    private String patientStringNameNumber;
-    private String patientDateOfBirth;
-    private String patientPostalCode;
-    private String location;
+    private String street;
+    private String streetNumber;
+    private String city;
+    private String country;
+    private String postalCode;
 
     public CreateAppointmentEvent() {
     }
 
-    public CreateAppointmentEvent(Long id, Long employeeId, String patientName, String patientStringNameNumber, String patientDateOfBirth, String patientPostalCode, String location) {
-        this.id = id;
-        this.employeeId = employeeId;
-        this.patientName = patientName;
-        this.patientStringNameNumber = patientStringNameNumber;
-        this.patientDateOfBirth = patientDateOfBirth;
-        this.patientPostalCode = patientPostalCode;
-        this.location = location;
+    public CreateAppointmentEvent(String street, String streetNumber, String city, String country, String postalCode) {
+        this.street = street;
+        this.streetNumber = streetNumber;
+        this.city = city;
+        this.country = country;
+        this.postalCode = postalCode;
     }
 
-    public Long getId() {
-        return id;
+    public String getStreet() {
+        return street;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
+    public String getStreetNumber() {
+        return streetNumber;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
     }
 
-    public String getPatientName() {
-        return patientName;
+    public String getCity() {
+        return city;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getPatientStringNameNumber() {
-        return patientStringNameNumber;
+    public String getCountry() {
+        return country;
     }
 
-    public void setPatientStringNameNumber(String patientStringNameNumber) {
-        this.patientStringNameNumber = patientStringNameNumber;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public String getPatientDateOfBirth() {
-        return patientDateOfBirth;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setPatientDateOfBirth(String patientDateOfBirth) {
-        this.patientDateOfBirth = patientDateOfBirth;
-    }
-
-    public String getPatientPostalCode() {
-        return patientPostalCode;
-    }
-
-    public void setPatientPostalCode(String patientPostalCode) {
-        this.patientPostalCode = patientPostalCode;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 }
