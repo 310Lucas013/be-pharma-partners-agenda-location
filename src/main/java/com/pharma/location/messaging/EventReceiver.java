@@ -2,6 +2,7 @@ package com.pharma.location.messaging;
 
 import com.google.gson.Gson;
 import com.pharma.location.events.CreateAppointmentEvent;
+import com.pharma.location.events.CreateLocationMessage;
 import com.pharma.location.events.UpdateAppointmentEvent;
 import com.pharma.location.models.Location;
 import com.pharma.location.services.LocationService;
@@ -63,6 +64,23 @@ public class EventReceiver {
         location.setHouseNumber(event.getHouseNumber());
         location.setStreet(event.getStreet());
         locationService.save(location);
+    }
+
+    @RabbitListener(queues = "create-location")
+    public void receiveLocation(String json) {
+        System.out.println("received the message!");
+        log.info("Received message in service location: {}", json);
+        Gson gson = new Gson();
+        CreateLocationMessage message = gson.fromJson(json, CreateLocationMessage.class);
+        Location location = new Location();
+        location.setCity(message.getCity());
+        location.setCountry(message.getCountry());
+        location.setHouseNumber(message.getHouseNumber());
+        location.setStreet(message.getStreetName());
+        location.setZipCode(message.getZipCode());
+        System.out.println(location);
+        Location l = locationService.save(location);
+        System.out.println(l);
     }
 
 }
