@@ -32,9 +32,29 @@ public class MessageBrokerConfiguration {
         return new Queue("create-appointment");
     }
 
+    @Bean("update-appointment")
+    public Queue updateAppointmentQueue() {
+        return new Queue("update-appointment");
+    }
+
+    @Bean("create-location")
+    public Queue createLocationQueue() {
+        return new Queue("create-location");
+    }
+
     @Bean
     Binding createAccountBinding(@Qualifier("create-appointment") Queue queue, DirectExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with("create-appointment");
+    }
+
+    @Bean
+    Binding updateAccounttBinding(@Qualifier("update-appointment") Queue queue, DirectExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with("update-appointment");
+    }
+
+    @Bean
+    Binding createLocationBinding(@Qualifier("create-location") Queue queue, DirectExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with("create-location");
     }
 
     @Bean
