@@ -85,8 +85,7 @@ class LocationControllerTests {
 				.andExpect(MockMvcResultMatchers.jsonPath("$").exists());
 	}
 
-/*
-	@Test
+/*	@Test
 	public void addLocationAPI()
 			throws Exception {
 		Location location = new Location((long)1, "Street", "HouseNumber", "Zipcode", "City", "Country");
@@ -112,8 +111,7 @@ class LocationControllerTests {
 				.andDo(print())
 				.andExpect(status().isBadRequest())
 				.andExpect(MockMvcResultMatchers.content().string("Failed to create location"));
-	}
-	*/
+	}*/
 
 	@Test
 	public void updateLocationAPI()
