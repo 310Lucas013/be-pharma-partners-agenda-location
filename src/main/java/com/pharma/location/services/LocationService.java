@@ -5,6 +5,7 @@ import com.pharma.location.models.LocationDto;
 import com.pharma.location.repositories.LocationRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,13 +25,16 @@ public class LocationService {
         return locationRepository.findById(locationId);
     }
 
+    public List<Location> getAll(){
+        return locationRepository.findAll();
+    }
+
     public Location update(LocationDto location){
         Location loc = new Location(location);
         return locationRepository.save(loc);
     }
 
-    public void delete(LocationDto location){
-        Location loc = new Location(location);
-        locationRepository.delete(loc);
+    public void delete(long id){
+        locationRepository.deleteById(id);
     }
 }
