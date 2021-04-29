@@ -67,17 +67,20 @@ public class EventReceiver {
     }
 
     @RabbitListener(queues = "create-location")
-    public void receiveLocation(String json) {
+    public void receiveLocation(Message message) {
         System.out.println("received the message!");
-        log.info("Received message in service location: {}", json);
+        log.info("Received message in service location: {}", new String(message.getBody()));
         Gson gson = new Gson();
-        CreateLocationMessage message = gson.fromJson(json, CreateLocationMessage.class);
+        String idk = new String(message.getBody());
+        System.out.println(idk);
+        CreateLocationMessage clm = gson.fromJson(idk, CreateLocationMessage.class);
+        System.out.println(clm);
         Location location = new Location();
-        location.setCity(message.getCity());
-        location.setCountry(message.getCountry());
-        location.setHouseNumber(message.getHouseNumber());
-        location.setStreet(message.getStreetName());
-        location.setZipCode(message.getZipCode());
+        location.setCity(clm.getCity());
+        location.setCountry(clm.getCountry());
+        location.setHouseNumber(clm.getHouseNumber());
+        location.setStreet(clm.getStreetName());
+        location.setZipCode(clm.getZipCode());
         System.out.println(location);
         Location l = locationService.save(location);
         System.out.println(l);

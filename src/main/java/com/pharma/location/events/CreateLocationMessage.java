@@ -2,8 +2,10 @@ package com.pharma.location.events;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class CreateLocationMessage {
+public class CreateLocationMessage implements Serializable {
     private String streetName;
     private String houseNumber;
     private String zipCode;
