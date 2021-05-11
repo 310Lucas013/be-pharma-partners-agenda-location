@@ -1,13 +1,22 @@
 package com.pharma.location.events;
 
-import java.io.Serializable;
-
-public class CreateLocationMessage implements Serializable {
+public class CreateLocationMessage {
     private String streetName;
     private String houseNumber;
     private String zipCode;
     private String city;
     private String country;
+
+    public CreateLocationMessage() {
+    }
+
+    public CreateLocationMessage(String streetName, String houseNumber, String zipCode, String city, String country) {
+        this.streetName = streetName;
+        this.houseNumber = houseNumber;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.country = country;
+    }
 
     public String getStreetName() {
         return streetName;
