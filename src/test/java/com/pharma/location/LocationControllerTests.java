@@ -64,7 +64,7 @@ class LocationControllerTests {
 
 		given(locationService.getAll()).willReturn(allLocations);
 		mvc.perform(MockMvcRequestBuilders
-				.get("/location/all")
+				.get("/locations/all")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isOk())
@@ -78,7 +78,7 @@ class LocationControllerTests {
 
 		given(locationService.getById((long)1)).willReturn(java.util.Optional.of(location));
 		mvc.perform(MockMvcRequestBuilders
-				.get("/location/1")
+				.get("/locations/1")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isOk())
@@ -92,7 +92,7 @@ class LocationControllerTests {
 
 		given(locationService.save(any(Location.class))).willReturn(location);
 		mvc.perform(MockMvcRequestBuilders
-				.get("/location/create", location)
+				.get("/locations/create", location)
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isOk())
@@ -106,7 +106,7 @@ class LocationControllerTests {
 
 		given(locationService.save(any(Location.class))).willReturn(null);
 		mvc.perform(MockMvcRequestBuilders
-				.get("/location/create", location)
+				.get("/locations/create", location)
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isBadRequest())
@@ -120,7 +120,7 @@ class LocationControllerTests {
 
 		given(locationService.save(any(Location.class))).willReturn(location);
 		mvc.perform(MockMvcRequestBuilders
-				.put("/location/update", gson.toJson(location))
+				.put("/locations/update", gson.toJson(location))
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isOk())
@@ -131,7 +131,7 @@ class LocationControllerTests {
 	public void deleteLocationAPI()
 			throws Exception {
 		mvc.perform(MockMvcRequestBuilders
-				.delete("/location/delete/1")
+				.delete("/locations/delete/1")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isOk())
