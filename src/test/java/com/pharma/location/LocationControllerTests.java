@@ -1,6 +1,9 @@
 package com.pharma.location;
 
 import com.google.gson.Gson;
+import com.pharma.location.config.JwtAuthenticationEntryPoint;
+import com.pharma.location.config.JwtTokenUtil;
+import com.pharma.location.config.WebSecurityConfiguration;
 import com.pharma.location.controllers.LocationController;
 import com.pharma.location.models.Location;
 import com.pharma.location.repositories.LocationRepository;
@@ -13,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -40,7 +44,12 @@ class LocationControllerTests {
 	private LocationService locationService;
 	@MockBean
 	private LocationRepository locationRepository;
-
+	@Autowired
+	private WebSecurityConfiguration webSecurityConfiguration;
+	@MockBean
+	private JwtTokenUtil jwtTokenUtil;
+	@MockBean
+	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 	private final Gson gson = new Gson();
 
 	@Before
@@ -51,9 +60,13 @@ class LocationControllerTests {
 	@Test
 	public void contextLoads() {
 		assertThat(locationService).isNotNull();
+		assertThat(webSecurityConfiguration).isNotNull();
+		assertThat(jwtAuthenticationEntryPoint).isNotNull();
+		assertThat(jwtTokenUtil).isNotNull();
 	}
 
 	@Test
+	@WithMockUser(username = "admin", roles = "admin")
 	public void getAllLocationsAPI()
 			throws Exception {
 		Location location1 = new Location((long)1, "Street", "HouseNumber", "Zipdcode", "City", "Country");
@@ -72,6 +85,7 @@ class LocationControllerTests {
 	}
 
 	@Test
+	@WithMockUser(username = "admin", roles = "admin")
 	public void getLocationByIdAPI()
 			throws Exception {
 		Location location = new Location((long)1, "Street", "HouseNumber", "Zipdcode", "City", "Country");
@@ -114,6 +128,7 @@ class LocationControllerTests {
 	}*/
 
 	@Test
+	@WithMockUser(username = "admin", roles = "admin")
 	public void updateLocationAPI()
 			throws Exception {
 		Location location = new Location((long)1, "Street", "HouseNumber", "Zipcode", "City", "Country");
@@ -128,6 +143,7 @@ class LocationControllerTests {
 	}
 
 	@Test
+	@WithMockUser(username = "admin", roles = "admin")
 	public void deleteLocationAPI()
 			throws Exception {
 		mvc.perform(MockMvcRequestBuilders
